@@ -1,0 +1,352 @@
+{
+  "schema": "orangepro.fixture_manifest.v1",
+  "schema_note": "Field list approved 11 Oct 2026; the validating schema lands in src/local/contracts/ with A1.",
+  "id": "express-pr-6091",
+  "role": "main_case",
+  "status": "frozen",
+  "frozen_at": "2026-10-11T23:30:02.072Z",
+  "frozen_on": "owner approval in the working session, 11 Oct 2026 (artifacts/milestones/DECISIONS.md)",
+  "origin": {
+    "upstream": "https://github.com/expressjs/express",
+    "fork": null,
+    "fork_note": "No fork exists yet and none is needed for the local proof. One is required at M2.",
+    "license": "MIT",
+    "package_root": ".",
+    "package_name": "express",
+    "package_version": "5.0.1",
+    "node_engines": ">= 18"
+  },
+  "source": {
+    "pr": {
+      "number": 6091,
+      "url": "https://github.com/expressjs/express/pull/6091",
+      "state": "MERGED",
+      "merged_at": "2025-01-08T15:56:16Z",
+      "base_branch": "master",
+      "head_sha": "e86f1bec744b8d633e1a62be774270cc10aa5cba",
+      "merge_commit_reported_by_github": "246f6f5aeebad1b9d6a0ea08cd96d3fe19f8f23c"
+    },
+    "merged_sha": "246f6f5aeebad1b9d6a0ea08cd96d3fe19f8f23c",
+    "previous_base_sha": "b11122be85377375465b2aa103da43301e56f128",
+    "comparison_range": "b11122be85377375465b2aa103da43301e56f128..246f6f5aeebad1b9d6a0ea08cd96d3fe19f8f23c",
+    "subject": "fix: Remove `utils-merge` dependency - use spread syntax instead (#6091)",
+    "author_date": "2025-01-08T16:56:16+01:00",
+    "ancestry": {
+      "merged_parent_count": 1,
+      "previous_base_is_first_parent_of_merged": true,
+      "github_merge_commit_equals_merged_sha": true,
+      "merged_is_ancestor_of_upstream_master": true,
+      "upstream_master_checked_at": "a419aa7350389a275ab45fde2e849ed1f02449ef",
+      "pr_head": {
+        "sha": "e86f1bec744b8d633e1a62be774270cc10aa5cba",
+        "present_in_clone": true,
+        "is_ancestor_of_merged": false,
+        "tree_equals_merged_tree": false,
+        "files_differing_from_merged": 11
+      }
+    },
+    "files": [
+      {
+        "file": "History.md",
+        "role": "doc",
+        "added": 1,
+        "removed": 0
+      },
+      {
+        "file": "lib/application.js",
+        "role": "code",
+        "added": 1,
+        "removed": 11
+      },
+      {
+        "file": "lib/response.js",
+        "role": "code",
+        "added": 1,
+        "removed": 2
+      },
+      {
+        "file": "package.json",
+        "role": "config",
+        "added": 0,
+        "removed": 1
+      },
+      {
+        "file": "test/res.cookie.js",
+        "role": "test",
+        "added": 1,
+        "removed": 2
+      }
+    ],
+    "hunks": [
+      {
+        "file": "History.md",
+        "base_start": 3,
+        "base_lines": 0,
+        "merged_start": 4,
+        "merged_lines": 1,
+        "git_context": "unreleased"
+      },
+      {
+        "file": "lib/application.js",
+        "base_start": 24,
+        "base_lines": 1,
+        "merged_start": 23,
+        "merged_lines": 0,
+        "git_context": "var compileTrust = require('./utils').compileTrust;"
+      },
+      {
+        "file": "lib/application.js",
+        "base_start": 528,
+        "base_lines": 1,
+        "merged_start": 526,
+        "merged_lines": 0,
+        "git_context": "app.render = function render(name, options, callback) {"
+      },
+      {
+        "file": "lib/application.js",
+        "base_start": 537,
+        "base_lines": 8,
+        "merged_start": 534,
+        "merged_lines": 0,
+        "git_context": "app.render = function render(name, options, callback) {"
+      },
+      {
+        "file": "lib/application.js",
+        "base_start": 546,
+        "base_lines": 1,
+        "merged_start": 536,
+        "merged_lines": 1,
+        "git_context": "app.render = function render(name, options, callback) {"
+      },
+      {
+        "file": "lib/response.js",
+        "base_start": 25,
+        "base_lines": 1,
+        "merged_start": 24,
+        "merged_lines": 0,
+        "git_context": "var statuses = require('statuses')"
+      },
+      {
+        "file": "lib/response.js",
+        "base_start": 735,
+        "base_lines": 1,
+        "merged_start": 734,
+        "merged_lines": 1,
+        "git_context": "res.cookie = function (name, value, options) {"
+      },
+      {
+        "file": "package.json",
+        "base_start": 62,
+        "base_lines": 1,
+        "merged_start": 61,
+        "merged_lines": 0,
+        "git_context": null
+      },
+      {
+        "file": "test/res.cookie.js",
+        "base_start": 6,
+        "base_lines": 1,
+        "merged_start": 5,
+        "merged_lines": 0,
+        "git_context": "var express = require('../')"
+      },
+      {
+        "file": "test/res.cookie.js",
+        "base_start": 133,
+        "base_lines": 1,
+        "merged_start": 132,
+        "merged_lines": 1,
+        "git_context": "describe('res', function(){"
+      }
+    ]
+  },
+  "historical_test_changes": {
+    "read": true,
+    "summary": "The PR edited test/res.cookie.js mechanically: it removed the unused require of utils-merge and replaced `merge({}, options)` with `{ ...options }` in one existing test. No test was removed or weakened.",
+    "evaluation_transformations": "none"
+  },
+  "dependencies": {
+    "upstream_has_lockfile": false,
+    "upstream_npmrc": [
+      "package-lock=false"
+    ],
+    "lockfile": "package-lock.json",
+    "lockfile_sha256": "eb4ea3af1fa2c93bae87483cc0ce5e735b6a28b51c18d84e578bd2bb961ec393",
+    "lockfile_version": 3,
+    "resolved": "once, inside the install-shape container, with `npm install --package-lock=true --no-audit --no-fund` on 2026-10-11",
+    "installed_packages": 406,
+    "mocha_installed": "10.2.0"
+  },
+  "environment": {
+    "image": "node@sha256:c3de60bf2f9dd0ac6370e6117950ff62d6e339527e7472301c9c78a017978392",
+    "platform": "linux/arm64",
+    "node": "v22.23.3",
+    "npm": "10.9.9",
+    "docker": {
+      "client": "29.7.2",
+      "server": "29.8.2",
+      "runtime": "Docker Desktop"
+    },
+    "host": "macOS 26.6.2, arm64",
+    "boundary_script": "artifacts/milestones/M0/0.2.58/isolation/boundary.sh",
+    "boundary_script_sha256": "f81370d4f3d7de580ed7e00a91db28923d8762d8c9931d65c4132bab369b59eb",
+    "stages": {
+      "install": {
+        "network": "bridge",
+        "checkout_mount": "read-write",
+        "user": "1000:1000",
+        "capabilities": "none",
+        "read_only_root": true
+      },
+      "test": {
+        "network": "none",
+        "checkout_mount": "read-only",
+        "user": "1000:1000",
+        "capabilities": "none",
+        "read_only_root": true
+      }
+    },
+    "mounts": [
+      "the throwaway checkout at /work/repo (nothing else)"
+    ],
+    "variables_set_in_container": [
+      "HOME",
+      "npm_config_cache",
+      "npm_config_update_notifier",
+      "npm_config_fund",
+      "npm_config_audit",
+      "NODE_ENV (test stage)",
+      "CI (test stage)"
+    ],
+    "variables_set_by_repository_harness": [
+      "NODE_ENV",
+      "NO_DEPRECATION (test/support/env.js)"
+    ]
+  },
+  "commands": {
+    "install": [
+      "npm",
+      "ci",
+      "--package-lock=true",
+      "--no-audit",
+      "--no-fund"
+    ],
+    "full_suite": [
+      "npm",
+      "test"
+    ],
+    "full_suite_expanded": [
+      "mocha",
+      "--require",
+      "test/support/env",
+      "--reporter",
+      "spec",
+      "--check-leaks",
+      "test/",
+      "test/acceptance/"
+    ],
+    "replay": [
+      "bash",
+      "artifacts/fixtures/replay.sh",
+      "artifacts/fixtures/express-pr-6091",
+      "<clone of upstream, or its URL>",
+      "<empty work folder>"
+    ]
+  },
+  "limits": {
+    "container_deadline_seconds": 900,
+    "memory": "4g",
+    "cpus": 4,
+    "processes": 512,
+    "behaviors": 3,
+    "mutations_per_behavior": 2,
+    "delivered_tests": 1,
+    "repair_rounds": 2
+  },
+  "baseline": {
+    "passing": 1231,
+    "failing": 0,
+    "pending": 0,
+    "runs": [
+      {
+        "run": 1,
+        "folder": "replays/run-1",
+        "finished": "2026-10-11T23:30:09Z",
+        "verdict": "matches_manifest",
+        "passing": 1231,
+        "failing": 0,
+        "pending": 0,
+        "install_exit": 0,
+        "suite_exit": 0,
+        "boundary_check": "passed",
+        "tracked_files_changed": 0,
+        "log_sha256": "5c72134f21d721d10191b480441d989ae2c5688e8a4b99cb6822f34694c3ca19"
+      },
+      {
+        "run": 2,
+        "folder": "replays/run-2",
+        "finished": "2026-10-11T23:30:16Z",
+        "verdict": "matches_manifest",
+        "passing": 1231,
+        "failing": 0,
+        "pending": 0,
+        "install_exit": 0,
+        "suite_exit": 0,
+        "boundary_check": "passed",
+        "tracked_files_changed": 0,
+        "log_sha256": "e05d9c374b34b1a1dd316cceb4999ed34d1b349b91bb89d52628d2fa024e6667"
+      }
+    ]
+  },
+  "adjacent_native_tests": [
+    "test/acceptance/cookie-sessions.js",
+    "test/acceptance/cookies.js",
+    "test/app.render.js",
+    "test/req.signedCookies.js",
+    "test/res.clearCookie.js",
+    "test/res.cookie.js",
+    "test/res.render.js"
+  ],
+  "selected_tests": null,
+  "selected_tests_note": "Chosen and fixed in A2, before any mutant run.",
+  "expectation_sources": {
+    "status": "candidates only; nothing approved. The owner approves the expected behavior in A2, before any test is generated.",
+    "candidates": [
+      "the JSDoc block above res.cookie in lib/response.js at the merged commit",
+      "Express API reference for res.cookie (not read yet)",
+      "RFC 6265 section 5.2.2 (Max-Age)"
+    ]
+  },
+  "allowed_patch_paths": {
+    "status": "proposed; fixed in A4",
+    "patterns": [
+      "test/*.js",
+      "test/acceptance/*.js"
+    ],
+    "never": [
+      "lib/**",
+      "index.js",
+      "package.json",
+      "package-lock.json",
+      ".npmrc",
+      "test/support/**",
+      "test/fixtures/**",
+      ".github/**"
+    ]
+  },
+  "disclosure": {
+    "assisted_replay": true,
+    "why": "A 29 September memo, read before this fixture was chosen, names res.cookie as the target and a maxAge rounding change (Math.floor to Math.ceil, called M07) as a fault the existing tests did not catch, and says a manually translated test killed it.",
+    "visible_before_freezing": [
+      "the memo's three seeded faults (M07, M12, M13)",
+      "subject lines of upstream commits touching lib/response.js",
+      "GitHub identity fields of PRs #7459, #4893, #5792, #6091",
+      "the full diff of PR #6091"
+    ],
+    "not_read": [
+      "the description and discussion of PR #6091",
+      "any later fix or regression test for res.cookie"
+    ],
+    "claim_limit": "Anything proved on this fixture is a replay of a known case, not independent discovery."
+  }
+}

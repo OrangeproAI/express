@@ -1,0 +1,16 @@
+{
+  "managed_by": "OrangePro",
+  "note": "Written by opro install-github-action. Each file's sha256 as written; a file that no longer matches is yours, and OrangePro will not overwrite or remove it.",
+  "files": {
+    ".orangepro/actions/.gitignore": "63fbe9a377c9f9597ab7b413ee020d6b9720e3ce0d9e85ede6dea7cb249cddf0",
+    ".orangepro/actions/assertion-template.json": "8dfc890378c9c98309de1fa93dfefbb822fb3fd7efb7c481fdb7a9f2b112ae67",
+    ".orangepro/actions/candidate.patch": "7b49c19e427474bd268fdc07d0f0ab2252bb19441f06f03cff3e0ee8f61af114",
+    ".orangepro/actions/fixture-manifest.json": "ffc3b7090b1908aff08b856aa8a563aaf705fabcfa4fd345f4cce7f2584c9c70",
+    ".orangepro/actions/oracle.json": "046dadda72430635efa69dd6806f66895bae02d9f480842bbdd31f11cb07d688",
+    ".orangepro/actions/package-lock.json": "eb4ea3af1fa2c93bae87483cc0ce5e735b6a28b51c18d84e578bd2bb961ec393",
+    ".orangepro/actions/profile.json": "4a85112438bf38f56b6512bd2ed53f7ec57d14613ac44d6c12ca1a15b97072ec",
+    ".orangepro/actions/target-record.json": "cc8484239a4de5fbb77ab3a6387f791f5bc36b13411dd3b5d3895366310c77cc",
+    ".orangepro/actions/witness.cjs": "45aa1ae8a673f884e2df88f6e3f9433e76f44a28889bd077c92ce9b76cda38a6"
+  },
+  "sha256": "7854df8e6696afdc38ca53c4d86b96fc2544bc08091d302e292616dc872afe5a"
+}

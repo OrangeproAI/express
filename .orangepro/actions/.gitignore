@@ -1,0 +1,3 @@
+# Written by OrangePro: the post-merge workflow reads every file in this folder,
+# so none of them is ignored here, whatever the repository's own ignore rules say.
+!*

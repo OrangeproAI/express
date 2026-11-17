@@ -1,0 +1,47 @@
+{
+  "version": "orangepro.oracle.v1",
+  "target_record_sha256": "c46d4debf4336f35f436e3aad79230cfc932d1704a14cd8f6392d9662964c99d",
+  "symbol_id": "sym:lib/response.js#res.cookie",
+  "behavior": "When maxAge is 1,000 ms or more and not a whole number of seconds, the cookie's Max-Age is the whole number of seconds not exceeding maxAge ÷ 1000 (1,500 ms gives Max-Age=1), so the cookie never outlives the Expires date set from the same maxAge.",
+  "entry_point": "res.cookie(name, value, { maxAge }) on an Express response, observed in the Set-Cookie header of an HTTP response",
+  "inputs": "options.maxAge of 1,000 ms or more that is not a whole number of seconds, e.g. 1500",
+  "expected": "Max-Age is the whole number of seconds not exceeding maxAge ÷ 1000: 1,500 ms gives Max-Age=1",
+  "excluded_inputs": "maxAge under 1,000 ms (sub-second values: the rounding direction is arguable there), null, undefined, and values that are not numbers",
+  "why_observable": "Max-Age and Expires are attributes of the Set-Cookie response header that a client reads; a Max-Age longer than the time to Expires makes the cookie outlive the Expires date, because Max-Age takes precedence",
+  "basis": [
+    {
+      "kind": "source_doc",
+      "ref": "lib/response.js lines 709-731 at 246f6f5a (JSDoc above res.cookie)",
+      "note": "maxAge is in milliseconds and is converted to expires"
+    },
+    {
+      "kind": "spec",
+      "ref": "RFC 6265 section 5.2.2 (Max-Age attribute) and section 5.3 step 3 (storage model)",
+      "note": "Max-Age is a lifetime in whole seconds and takes precedence over Expires"
+    },
+    {
+      "kind": "library",
+      "ref": "cookie 0.7.1 index.js lines 204-211 (as installed in the fixture)",
+      "note": "the serializer Express uses writes Max-Age as Math.floor of the value it is given"
+    }
+  ],
+  "witness": {
+    "file": "witness.cjs",
+    "sha256": "45aa1ae8a673f884e2df88f6e3f9433e76f44a28889bd077c92ce9b76cda38a6",
+    "input": "res.cookie('name', 'tobi', { maxAge: 1500 }) on GET /, read back from Set-Cookie"
+  },
+  "assisted": {
+    "flag": true,
+    "visible_before": [
+      "the 29 Sep 2026 memo naming res.cookie and the fault M07 (Math.floor to Math.ceil in the maxAge conversion), said to survive the existing tests",
+      "the full diff of PR #6091",
+      "subject lines of upstream commits touching lib/response.js"
+    ]
+  },
+  "approval": {
+    "status": "approved",
+    "by": "Aamir",
+    "at": "2026-10-21",
+    "where": "artifacts/milestones/DECISIONS.md, 21 Oct 2026 (owner's answers on the A2 pre-registration, question 1)"
+  }
+}

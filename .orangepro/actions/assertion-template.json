@@ -1,0 +1,35 @@
+{
+  "version": "orangepro.assertion_record.v1",
+  "generation_request_sha256": "<filled in by actions-run: sha256 of this run's generation-request.json>",
+  "fault_record_sha256": "<filled in by actions-run, from the request>",
+  "candidate": {
+    "patch_sha256": "<filled in by actions-run>",
+    "files": [
+      {
+        "path": "test/res.cookie.js",
+        "sha256_after": "<filled in by actions-run>"
+      }
+    ]
+  },
+  "test": {
+    "file": "test/res.cookie.js",
+    "full_title": "res .cookie(name, string, options) maxAge should round a sub-second maxAge down to whole seconds"
+  },
+  "assertion": {
+    "file": "test/res.cookie.js",
+    "line": 197,
+    "text": ".expect('Set-Cookie', /name=tobi; Max-Age=1; Path=\\/; Expires=/)",
+    "condition": "the Set-Cookie header for maxAge 1500 has Max-Age=1: whole seconds not exceeding maxAge / 1000, the approved oracle's value"
+  },
+  "failure_recognition": "first_frame_at_declared_line",
+  "generation": {
+    "by": "host_agent",
+    "agent": "Claude Code (claude-opus-5-5)",
+    "assisted": true,
+    "saw": [
+      "brief.md and generation-request.json: the approved oracle, the fault and its diagnostic diff, the old-test result, the neighbouring tests",
+      "the 29 September memo naming res.cookie and M07"
+    ],
+    "attempt": 1
+  }
+}

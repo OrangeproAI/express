@@ -1,0 +1,28 @@
+{
+  "version": "orangepro.actions_profile.v1",
+  "fixture": {
+    "manifest": "fixture-manifest.json",
+    "lockfile": "package-lock.json"
+  },
+  "target_record": "target-record.json",
+  "oracle": "oracle.json",
+  "witness": "witness.cjs",
+  "fault": "rounding_floor_ceil@18560",
+  "tests": [
+    "test/res.cookie.js",
+    "test/acceptance/cookies.js"
+  ],
+  "full_suite": true,
+  "candidate": {
+    "patch": "candidate.patch",
+    "assertion": "assertion-template.json"
+  },
+  "limits": {
+    "total_minutes": 20
+  },
+  "base_branch": "master",
+  "orangepro": {
+    "version": "0.2.61",
+    "build_sha256": "9dafa37a9757014f08463f8305bc866a23f957ac138df8bf9b9baa6d549d05aa"
+  }
+}

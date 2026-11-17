@@ -1,0 +1,91 @@
+# Managed by OrangePro; sha256 of the rest: 2f78e17431b9427a25fc8cbdaf992a20ff98f6c2151a70a6e15d12fd282445b8
+name: OrangePro proof after merge
+on:
+  push:
+    branches: ["master"]
+  workflow_dispatch:
+    inputs:
+      merged_sha:
+        description: "Merged commit to prove (its full 40-character id)"
+        required: true
+        type: string
+      previous_base:
+        description: "Its previous base (its full 40-character id)"
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: orangepro-proof-${{ github.sha }}
+  cancel-in-progress: false
+jobs:
+  prove:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - name: Check out the OrangePro profile
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          path: orangepro-config
+          sparse-checkout: .orangepro/actions
+          persist-credentials: false
+      - name: Check out the commit to prove
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          path: repo
+          ref: ${{ inputs.merged_sha || github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Set up Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "22.23.4"
+      - name: Install OrangePro
+        run: 'npm install --no-audit --no-fund --prefix "$RUNNER_TEMP/opro" "@orangepro/orangepro-mcp@0.2.61"'
+      - name: Prove
+        run: '"$RUNNER_TEMP/opro/node_modules/.bin/opro" actions-run --event-name "$GITHUB_EVENT_NAME" --event "$GITHUB_EVENT_PATH" --profile orangepro-config/.orangepro/actions/profile.json --repo repo --out "$RUNNER_TEMP/orangepro-out" --summary "$GITHUB_STEP_SUMMARY"'
+      - name: Upload the proof artifacts
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: orangepro-proof-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/orangepro-out
+          if-no-files-found: warn
+  deliver:
+    needs: prove
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Set up Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "22.23.4"
+      - name: Install OrangePro
+        run: 'npm install --no-audit --no-fund --prefix "$RUNNER_TEMP/opro" "@orangepro/orangepro-mcp@0.2.61"'
+      - name: Download the proof artifacts
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: orangepro-proof-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/orangepro-in
+      - name: Deliver a draft test PR
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          MERGED_SHA: ${{ inputs.merged_sha || github.sha }}
+        run: '"$RUNNER_TEMP/opro/node_modules/.bin/opro" publish-tests --from-actions "$RUNNER_TEMP/orangepro-in" --repo "$GITHUB_REPOSITORY" --base "master" --merged "$MERGED_SHA" --yes --out "$RUNNER_TEMP/orangepro-delivery" --summary "$GITHUB_STEP_SUMMARY"'
+      - name: Upload the delivery record
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: orangepro-delivery-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/orangepro-delivery
+          if-no-files-found: warn
+      - name: Upload the report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: orangepro-report-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/orangepro-in
+          if-no-files-found: warn

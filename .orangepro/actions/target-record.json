@@ -1,0 +1,70 @@
+{
+  "version": "orangepro.target_record.v1",
+  "identity": {
+    "merged_commit": "246f6f5aeebad1b9d6a0ea08cd96d3fe19f8f23c",
+    "package_root": "",
+    "file": "lib/response.js",
+    "symbol_id": "sym:lib/response.js#res.cookie",
+    "name": "res.cookie",
+    "seen_by": "exported_object_method",
+    "shape_form": "member",
+    "fn_kind": "expression",
+    "owner": "res",
+    "property": "cookie",
+    "owner_binding": "object_create",
+    "targets": [
+      "res.cookie"
+    ],
+    "statement": {
+      "lines": {
+        "start": 733,
+        "end": 766
+      },
+      "bytes": {
+        "start": 18004,
+        "end": 18740
+      }
+    },
+    "function": {
+      "lines": {
+        "start": 733,
+        "end": 766
+      },
+      "bytes": {
+        "start": 18017,
+        "end": 18739
+      }
+    },
+    "body": {
+      "lines": {
+        "start": 733,
+        "end": 766
+      },
+      "bytes": {
+        "start": 18049,
+        "end": 18739
+      }
+    },
+    "file_sha256": "4da2af4f919b4b446c022e5921995a56f8e9e2cc4c1fe0c0adb6dbac731b9099",
+    "function_sha256": "b891c9e961bfae08ec3f47b44f045e160cf68cdd9d822fea81afcb7aac65546f",
+    "mutation_route": "bound"
+  },
+  "selection": {
+    "base_commit": "b11122be85377375465b2aa103da43301e56f128",
+    "mode": "first_parent",
+    "blocks": [
+      {
+        "file": "lib/response.js",
+        "new_start": 734,
+        "new_count": 1,
+        "old_start": 735,
+        "old_count": 1
+      }
+    ],
+    "reason": "text_changed",
+    "rank": 8,
+    "uncertainty": [],
+    "text_changed": true,
+    "change_kind": "text_not_classified"
+  }
+}
